@@ -2,7 +2,7 @@ import os, secrets, subprocess, argparse, json, secrets
 from datetime import datetime
 
 parser = argparse.ArgumentParser()
-parser.add_argument("command", type=str, help="Operation name" ,choices=["init", "commit", "back"])
+parser.add_argument("command", type=str, help="Operation name" ,choices=["init", "commit", "back", "pull", "update"])
 parser.add_argument("--account", "-a", type=str, help="Put the name of the github account", )
 parser.add_argument("--repo", "-r", type=str, help="Put the name of the repository you will use")
 parser.add_argument("--name", "-n", type=str, help="Put the name of your branch")
@@ -81,7 +81,17 @@ elif args.command.lower() == "commit":
         ["git", "commit", "-am", f"Commit: {datetime.now().strftime('%d/%m/%Y, %H:%M:%S')}"],
         ["git", "push"],
     ])
-
+elif args.command.lower() == "pull":
+    if not os.path.exists(".git"): exit("Run init option first!")
+    execute_commands([
+        ["git", "pull"]
+    ])
+elif args.command.lower() == "update":
+    if not os.path.exists(".git"): exit("Run init option first!")
+    execute_commands([
+        ["git", "pull"],
+        ["docker-compose","up","-d","--build"]
+    ])
 elif args.command.lower() == "back":
     if not os.path.exists(".git"): exit("Run init option first!")
     if not args.to: exit("insert the commit id to return to with -b")
