@@ -27,7 +27,7 @@ def get_options():
         with open(".gitbackup_options","r") as f:
             res = json.loads(f.read())
         if args.account: res["account"] = args.account
-        if args.repo: res["repo"] = args.account
+        if args.repo: res["repo"] = args.repo
         if args.account or args.repo:
             with open(".gitbackup_options","w") as f: f.write(json.dumps(res))  
     os.chdir(current_directory)
