@@ -90,6 +90,9 @@ elif args.command.lower() == "update":
     if not os.path.exists(".git"): exit("Run init option first!")
     execute_commands([
         ["git", "pull"],
+        ["git", "add", "."],
+        ["git", "commit", "-am", f"Commit: {datetime.now().strftime('%d/%m/%Y, %H:%M:%S')}"],
+        ["git", "push"],
         ["docker-compose","up","-d","--build"]
     ])
 elif args.command.lower() == "back":
