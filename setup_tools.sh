@@ -17,7 +17,7 @@ rm caronte.sh
 rm gitbackup.py
 
 # Copy files
-scp ad_tools.zip root@$1:/
+scp ad_tools.zip root@$1:/root
 rm ad_tools.zip
 ssh root@$1 mkdir tools
 ssh root@$1 apt install unzip
@@ -70,3 +70,7 @@ xdg-open ${NGROK_REMOTE_URL}
 NGROK_REMOTE_URL=$(echo ${NGROK_REMOTE_URL} | tr -d 'http://')
 ssh root@$1 chmod +x tools/caronte.sh
 ssh root@$1 ./tools/caronte.sh 45 ${NGROK_REMOTE_URL} game
+
+curl -X POST "http://5f50-195-47-232-51.ngrok.io/api/setup" \
+    -H "Content-Type: application/json" \
+    -d '{"config":{"server_address":"10.60.5.1","flag_regex":"[A-Z0-9]{31}=","auth_required":false},"accounts":{}}'
