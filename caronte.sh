@@ -13,7 +13,7 @@ CARONTE_ADDR="$2"
 INTERFACE_NAME="$3"
 
 while true; do
-	timeout $TIMEOUT_TCPDUMP tcpdump -w data.pcap -i $INTERFACE_NAME not port 22
+	timeout $TIMEOUT_TCPDUMP tcpdump -w data.pcap -i $INTERFACE_NAME port not 22 and port not 4444
 	curl -F "file=@data.pcap" -F "flush_all=true" "http://$CARONTE_ADDR/api/pcap/upload"
 	rm data.pcap
 done

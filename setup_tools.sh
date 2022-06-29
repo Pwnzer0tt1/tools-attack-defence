@@ -68,4 +68,4 @@ xdg-open ${NGROK_REMOTE_URL}
 # Run caronte.sh
 NGROK_REMOTE_URL=$(echo ${NGROK_REMOTE_URL} | tr -d 'http://')
 ssh root@$1 chmod +x tools/caronte.sh
-ssh root@$1 ./tools/caronte.sh 20 ${NGROK_REMOTE_URL} game
+ssh root@$1 ./tools/caronte.sh 45 ${NGROK_REMOTE_URL} game
