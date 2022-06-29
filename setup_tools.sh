@@ -20,6 +20,7 @@ rm gitbackup.py
 scp ad_tools.zip root@$1:/
 rm ad_tools.zip
 ssh root@$1 mkdir tools
+ssh root@$1 apt install unzip
 ssh root@$1 unzip ad_tools.zip -d tools
 ssh root@$1 rm ad_tools.zip
 ssh root@$1 mv tools/gitbackup.py gitbackup.py 
