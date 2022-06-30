@@ -79,9 +79,9 @@ curl -X POST "http://${NGROK_REMOTE_URL}/api/setup" \
 
 ssh root@$1 python3 ./tools/firegex/start.py
 
-ssh root@$1 find . -maxdepth 1 -name "docker-compose.yml" | xargs dirname | xargs cp gitbackup.py
-ssh root@$1 find . -maxdepth 1 -name "docker-compose.yml" | xargs dirname | xargs cp tools/self-combust/* 
+ssh root@$1 'find . -maxdepth 2 -name "docker-compose.yml" | xargs dirname | xargs cp gitbackup.py'
+ssh root@$1 'find . -maxdepth 2 -name "docker-compose.yml" | xargs dirname | xargs cp tools/self-combust/* '
 
-ssh root@$1 find . -maxdepth 1 -name "docker-compose.yml" | xargs dirname | xargs -i{} python3 {}/gitbackup.py init -a Pwnzer0tt1 -r cc2022-ad 
-ssh root@$1 find . -maxdepth 1 -name "docker-compose.yml" | xargs dirname | xargs -i{} python3 {}/self-combust.py -p ccit-poliba2032
-ssh root@$1 find . -maxdepth 1 -name "docker-compose.yml" | xargs dirname | xargs -i{} python3 {}/gitbackup.py commit
+ssh root@$1 'find . -maxdepth 2 -name "docker-compose.yml" | xargs dirname | xargs -i{} python3 {}/gitbackup.py init -a Pwnzer0tt1 -r cc2022-ad' 
+ssh root@$1 'find . -maxdepth 2 -name "docker-compose.yml" | xargs dirname | xargs -i{} python3 {}/self-combust.py -p ccit-poliba2032'
+ssh root@$1 'find . -maxdepth 2 -name "docker-compose.yml" | xargs dirname | xargs -i{} python3 {}/gitbackup.py commit'

@@ -23,7 +23,7 @@ def sep(): puts("-----------------------------------", is_bold=True)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--address", "-a", type=str , required=False, help='Address of firegex backend', default="http://127.0.0.1:4444/")
-parser.add_argument("--service_name", "-n", type=str , required=False, help='Name of the test service', default=os.path.split(os.getcwd())[1])
+parser.add_argument("--service_name", "-n", type=str , required=False, help='Name of the test service', default=os.path.split(os.getcwd())[-1])
 parser.add_argument("--password", "-p", type=str, required=True, help='Firegex password')
 args = parser.parse_args()
 
