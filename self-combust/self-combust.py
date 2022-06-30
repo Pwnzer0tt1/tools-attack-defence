@@ -27,6 +27,10 @@ parser.add_argument("--service_name", "-n", type=str , required=False, help='Nam
 parser.add_argument("--password", "-p", type=str, required=True, help='Firegex password')
 args = parser.parse_args()
 
+current_directory = os.path.dirname(__file__)
+current_directory = os.path.abspath(current_directory if current_directory else ".")
+os.chdir(current_directory)
+
 sep()
 puts(f"Connecting to ", color=colors.cyan, end="")
 puts(f"{args.address}", color=colors.yellow)
